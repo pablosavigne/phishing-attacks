@@ -1,0 +1,890 @@
+Delivered-To: office@neexis.com
+Received: by 2002:a05:6022:73a8:b0:e3:6363:bc5 with SMTP id bl40csp689923lab;
+        Sat, 25 Oct 2025 19:13:00 -0700 (PDT)
+X-Forwarded-Encrypted: i=4; AJvYcCWvbhKOuyEKwUas4PFL/CTZeBZKgemaY73MQZ0+6ig4GQOGnuX94zeJs6M57zsryRD4ITO5KoT4@neexis.com
+X-Received: by 2002:a17:907:7f8c:b0:b04:7232:3e97 with SMTP id a640c23a62f3a-b6d51b0ac44mr1318579666b.21.1761444780282;
+        Sat, 25 Oct 2025 19:13:00 -0700 (PDT)
+ARC-Seal: i=3; a=rsa-sha256; t=1761444780; cv=pass;
+        d=google.com; s=arc-20240605;
+        b=dWlXO9dpoFNW6vysrSaVyzzk7LFAfy+b26bH635FZvwZIs333E5FumFoRwbdPyOcdh
+         x8KKBqt9dzkcW4NpwutCNnJ44XVhAGS/uFvgcW667T5CdXt9yxYdZblplgkxHFar2k4A
+         g3lIPYialIngEPK4fPZ+j16Di8pcMwZ46zQLLXEb+vf7H+8KINtoRpnoClKcW5Hj7rSz
+         3FP1zA7wZ7sbX4jbYTOaI2CdVom/x3Nrrdj4JcD3hYmA8k3ZeBmwzMRHErEtbH76TDbD
+         wVibsC/2XYxR3rTMIgcNHiWm/YDSZk885om6zb1SbZLsCb3aQU+pu+IxshwoOb0KP2as
+         lKMQ==
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=from:subject:mime-version:date:message-id:to
+         :content-transfer-encoding:dkim-signature:delivered-to;
+        bh=UDeArqEo+cRH+txF6pEp9tWKmixnVbzQ8SjmBC76Lh4=;
+        fh=T8v98LSc4yDcgOAyGKy0BIRAArm2OKa1sFtA/j21sXc=;
+        b=UbtTz/PaMLRSDPmd1PgG5VgS3q873PdKSAaq4ZAUQrE5+E3X2daOk+Gx4+Bz5DJ4pJ
+         YelNUiI5p1w64uHTyEASsKl3gqY35X/X1KVIGG8a7DvMfo8ZEWPZ6oSPYqBc8OxTl6wT
+         Qb+O/ZNE9cehY09B5VP+GW0Gv9im0e3d3Gtlxh8fEgEQUE44UehsN2jAKLa/rRKH+39R
+         4c3+IQiO/WedTBJaf5UxVLPmwXvkiecuZhmjP06n4w/3obwRUnyFSUmJ4GWIrJApozXT
+         0OK0rjUqknCOaBu+Dkd2kpvfs1ZHLMGmgXsAPyYl3WtnOduqcdTCBPkPuBK8W0x1f7Vs
+         Jo3A==;
+        dara=google.com
+ARC-Authentication-Results: i=3; mx.google.com;
+       dkim=pass header.i=@talentlms.com header.s=scph0616 header.b=julUwG6X;
+       arc=pass (i=2 spf=pass spfdomain=bounces.talentlms.com dkim=pass dkdomain=talentlms.com dmarc=pass fromdomain=talentlms.com);
+       spf=pass (google.com: domain of affected-user+caf_=office=neexis.com@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom="affected-user+caf_=office=neexis.com@gmail.com";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=talentlms.com;
+       dara=fail header.i=@neexis.com
+Return-Path: <affected-user+caf_=office=neexis.com@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-b6d8724378esor81373466b.4.2025.10.25.19.12.57
+        for <office@neexis.com>
+        (Google Transport Security);
+        Sat, 25 Oct 2025 19:13:00 -0700 (PDT)
+Received-SPF: pass (google.com: domain of affected-user+caf_=office=neexis.com@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@talentlms.com header.s=scph0616 header.b=julUwG6X;
+       arc=pass (i=2 spf=pass spfdomain=bounces.talentlms.com dkim=pass dkdomain=talentlms.com dmarc=pass fromdomain=talentlms.com);
+       spf=pass (google.com: domain of affected-user+caf_=office=neexis.com@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom="affected-user+caf_=office=neexis.com@gmail.com";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=talentlms.com;
+       dara=fail header.i=@neexis.com
+ARC-Seal: i=2; a=rsa-sha256; t=1761444777; cv=pass;
+        d=google.com; s=arc-20240605;
+        b=UvpwJQk8JVrdEzwES9RiwsCG1RocKUSXT0FJsPqvuIePxWT8lVrqRcht8gyoyUWOPw
+         9We90C/SWe5x9olEPt7u3dNx1atqilmcNumkwgEj0ExNDdDDjZiWh3Sl1WdP+QKqtOAQ
+         1yKh69p0ekeTD9mkC3yNUzemFLCsYS70TP5vtwvFkQCrpEvJ0JHJ4tpYCRIs2+g753JJ
+         dCrqaymycdvEEhX9NXVuxwUx8WEGVnsTlWrymfmCvY11MPG9BqSmlb7iFQDjJfeARobO
+         f0AkQH68C5/Z4tjU/sl6u79q+cuSxFgP/o91IwUeYtlXOOSxKOyPAoPox+7MbTXjiKag
+         5ybQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=from:subject:mime-version:date:message-id:to
+         :content-transfer-encoding:dkim-signature:delivered-to;
+        bh=UDeArqEo+cRH+txF6pEp9tWKmixnVbzQ8SjmBC76Lh4=;
+        fh=T8v98LSc4yDcgOAyGKy0BIRAArm2OKa1sFtA/j21sXc=;
+        b=Xmi3rFfyCXmYhCOEHGSNvIoCpOBr+pWMn32v43kRnyyqq5hm6hDPyJoOkDBdCPkaip
+         vARYzhKLIgP/Rv3Skn3YNA24X5RUHiT4AIFxLg3asnAAye5bHhe0PGf1sYGTrw5vGzK7
+         XKd1zP1a+eKWSV1WcjYH6nNUhulDqVUM39hlf/ovvjqoNB/iYEHddj0fOLvf1Xyls6mb
+         EJv0hS3CUVySNFFN7UeIAaVlcB5mMnzz55zZFbikIwFOllOyOgWYYmIxnm1e+SYD/ecY
+         tJ/b6A9beUiNuTp8nF3RujAVz6aEYhq/mxhHQ1ptYlwUPEobGCHfrjc4tI1DIJlDJPa4
+         Tzqw==;
+        darn=neexis.com
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@talentlms.com header.s=scph0616 header.b=julUwG6X;
+       spf=pass (google.com: domain of msprvs1=20394-pywzoao=bounces-30622@bounces.talentlms.com designates 192.174.90.249 as permitted sender) smtp.mailfrom="msprvs1=20394-PywzOAo=bounces-30622@bounces.talentlms.com";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=talentlms.com
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761444777; x=1762049577;
+        h=from:subject:mime-version:date:message-id:to
+         :content-transfer-encoding:dkim-signature:delivered-to
+         :x-forwarded-for:x-forwarded-to:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UDeArqEo+cRH+txF6pEp9tWKmixnVbzQ8SjmBC76Lh4=;
+        b=DYNMPSW/1q3XC90GGwxoDJ4tps0ghUjCCsHCMRuPuAjyhkFwv3MgooWxEXpwyyTmcK
+         e31Zuzc0Y+DPnOxxjUs634wgG2uSx2vYfuG/Le1INnqcPM98I4d19yseYIx1oTSybjml
+         kjyggIaY4ygwC173OEf3mGFgZv8fzGI3bp4oCV9N7WCKM9KB4ZNbU8S/UbteZaz2pL1F
+         wwmUEfqOhw79MYSMWq3/5/gjJ6RWuVcf/M3odhGeZzInhEXltr9LbIG6ZWtX4tXPA4ni
+         h+Wx51Sjd+tldHqShNjEE+ByDcBLpij3a/G3iDEMioUMwEOWnpu6dsR2ZaYDuxHOxdA+
+         iFFw==
+X-Forwarded-Encrypted: i=2; AJvYcCVm7HBaIQcqTznT3CHOh1lAkm/BaNw9QbE9T7+/FfUNAYbGzf/Xg1ncxs/RhIErzPt4MdBZfXPf@neexis.com
+X-Gm-Message-State: AOJu0Yzh6HKrVDkSpxHhWAdb2juyAzgKuYe9MRsoJLB86K0q4qOIqJd5
+	NYfJrSkthdLUuF8dCZ7pGlUJEQsUS5R7TvGD85u+UB/2yHy86Jo2Tk/ivfpckF3HDzBEcNPIu2u
+	FHKVjF+VOP5CD+DlXJLRBtEJkROpFfrORfY4SM9rOsYd1i9X4qBO1t/NWQ0JbqQ==
+X-Received: by 2002:a05:6402:90b:b0:63e:f2d:b179 with SMTP id 4fb4d7f45d1cf-63e3e585ce9mr9696785a12.29.1761444776626;
+        Sat, 25 Oct 2025 19:12:56 -0700 (PDT)
+X-Forwarded-To: office@neexis.com
+X-Forwarded-For: affected-user@gmail.com office@neexis.com
+Delivered-To: affected-user@gmail.com
+Received: by 2002:a05:6f02:829f:b0:b8:b231:6f4b with SMTP id j31csp750295rcd;
+        Sat, 25 Oct 2025 19:12:55 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFP5pYnADvOA/biBnGag8t8J2gQ6wokZoBW/Bb4WqRpZauE/6xUBIyiCuDBWq3DP8wDC5F8
+X-Received: by 2002:a05:690c:3608:b0:784:92a3:688e with SMTP id 00721157ae682-78492a389f7mr211169157b3.28.1761444774926;
+        Sat, 25 Oct 2025 19:12:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1761444774; cv=none;
+        d=google.com; s=arc-20240605;
+        b=V4uNXZ4G3TjlVh1ngZmQxqq2RU5fxzWPepW+q19+6Q+NVWJCCQLFF1PLaoHujNHSof
+         BxGex+oB+hNavAIOk2nej1lw/prZLF8OBtZ5jXn8n06kVccIGtyxDmlRFv6FWa5rVxgU
+         cGN5m5kXd8CsP9PM7rfPWiqGI0qBpcQlt/w2K65NoRWTE27B8uqrVxaMFB3xJfWaGBlG
+         CTImp1c9IfZdjpdp5LJN026P1Wvw46j0R4XB2bnDF81BGP+35wesXmjO7oziGqmEfzdh
+         Wax+8xkVregwWChCn/uGRknODl3kvX5rPT4lWEwna0sRgo3cDhBDRkjbrO7dbjUjZAHr
+         0RcA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=from:subject:mime-version:date:message-id:to
+         :content-transfer-encoding:dkim-signature;
+        bh=UDeArqEo+cRH+txF6pEp9tWKmixnVbzQ8SjmBC76Lh4=;
+        fh=s79PKHLZGXRWCxNTtmQvL69CZnz61nC9hpSvXasmYcc=;
+        b=dyAzxvFNw5CGyj0NpS1zJUBuij7YqAqBt7JfGlKlEMpYowgBVqHnrf9rutxTAVwnnO
+         183KslgzI9J3KAaQTdZpKv4IJbjMf0nBrBxK9RoRgfsIM3lM4KNXQIqucXvDZ2CT+BX8
+         qQf4lhaEd/kxr0tCK8cUccVPuFKktS7LqUyFTzwkjchFWBiAl5S3G5eB4h5RwCprbkBv
+         Wkg5KxVA4W7CvYz4QO75TDlBM3bRgeHhws64mVrGBYsWor6vTKg+kOQ9YieGgriFfNuD
+         L258ND03Kl2R8YZthAnngoVYN3xwoqz8hQvIloJebse89O4RP94SXuTl5JzXjZTh4set
+         YrkA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@talentlms.com header.s=scph0616 header.b=julUwG6X;
+       spf=pass (google.com: domain of msprvs1=20394-pywzoao=bounces-30622@bounces.talentlms.com designates 192.174.90.249 as permitted sender) smtp.mailfrom="msprvs1=20394-PywzOAo=bounces-30622@bounces.talentlms.com";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=talentlms.com
+Return-Path: <msprvs1=20394-PywzOAo=bounces-30622@bounces.talentlms.com>
+Received: from mta-174-90-249.epignosishq.com.sparkpostmail.com (mta-174-90-249.epignosishq.com.sparkpostmail.com. [192.174.90.249])
+        by mx.google.com with ESMTPS id 00721157ae682-785ee7eab8csi28533417b3.213.2025.10.25.19.12.53
+        for <affected-user@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 25 Oct 2025 19:12:54 -0700 (PDT)
+Received-SPF: pass (google.com: domain of msprvs1=20394-pywzoao=bounces-30622@bounces.talentlms.com designates 192.174.90.249 as permitted sender) client-ip=192.174.90.249;
+Return-Path: <msprvs1=20394-PywzOAo=bounces-30622@bounces.talentlms.com>
+X-MSFBL: LIfh85zxYJFkgbEl5vYt+QKsnqON9pf4Xcvl54Yp+zw=|eyJzdWJhY2NvdW50X2l
+	kIjoiMCIsImN1c3RvbWVyX2lkIjoiMzA2MjIiLCJyIjoiZWNvbG9naWNvOThAZ21
+	haWwuY29tIiwibWVzc2FnZV9pZCI6IjY4ZWVhNTgzZmQ2OGE4MjIxZTAwIiwidGV
+	uYW50X2lkIjoic3BjIn0=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=talentlms.com;
+	s=scph0616; t=1761444773; i=@talentlms.com;
+	bh=UDeArqEo+cRH+txF6pEp9tWKmixnVbzQ8SjmBC76Lh4=;
+	h=Content-Type:To:Message-ID:Date:Subject:From:From:To:Cc:Subject;
+	b=julUwG6XpYAvtvkJCaegUjBfTkoCdUAfMdxPSvp0FGOnGzTKMGY7+Jprb+q9DudNn
+	 9Ha5vH1jTcLWR5BGx0BfCNjGw6SyXA6ZSHPw/ll45+nImjdaOJd5PQ24omJd/z4yPm
+	 GV1llc8X/b4RgBIhP6AAii6KkSQo9Ba9iwRye814=
+Received: from [10.90.9.39] ([10.90.9.39])
+	by i-09d1a42aa745c4723.mta1vrest.sd.prd.sparkpost (ecelerity 5.1.0.74632 r(msys-ecelerity:tags/5.1.0.14)) with REST
+	id 00/E9-40531-5A38DF86; Sun, 26 Oct 2025 02:12:53 +0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="UTF-8"
+To: affected-user@gmail.com
+Message-ID: <00.E9.40531.5A38DF86@i-09d1a42aa745c4723.mta1vrest.sd.prd.sparkpost>
+Date: Sun, 26 Oct 2025 02:12:53 +0000
+MIME-Version: 1.0
+Subject: Claim Your Collectible
+From: "Tomorrowland" <noreply@talentlms.com>
+
+<html lang=3D"en"><head> <meta charset=3D"UTF-8"> <meta name=3D"viewport" c=
+ontent=3D"width=3Ddevice-width, initial-scale=3D1.0"> <meta name=3D"x-apple=
+-disable-message-reformatting"> <title>Merged Email Template</title> <!-- S=
+tyles from gex2.html --> <style> ul > li { text-indent: -1em; } </style> <s=
+tyle type=3D"text/css"> body, td {font-family: Arial, Helvetica, sans-serif=
+;} .hse-body-wrapper-table {background-color: #FFFFFF;} </style> <style typ=
+e=3D"text/css"> .hse-column-container { border: none !important; padding: 0=
+ !important; } </style> <style type=3D"text/css">@media only screen and (ma=
+x-width:639px){img.stretch-on-mobile,.hs_rss_email_entries_table img,.hs-st=
+retch-cta .hs-cta-img{height:auto !important;width:100% !important} .displa=
+y_block_on_small_screens{display:block}.hs_padded{padding-left:20px !import=
+ant;padding-right:20px !important} .hs-hm,table.hs-hm{display:none}.hs-hd{d=
+isplay:block !important}table.hs-hd{display:table !important} }@media only =
+screen and (max-width:639px){.hse-border-m{border-left:6px solid #fff !impo=
+rtant;border-right:6px solid #fff !important;box-sizing:border-box} .hse-bo=
+rder-bottom-m{border-bottom:6px solid #fff !important}.hse-border-top-m{bor=
+der-top:6px solid #fff !important} .hse-border-top-hm{border-top:none !impo=
+rtant}.hse-border-bottom-hm{border-bottom:none !important} }.moz-text-html =
+.hse-column-container{max-width:600px !important;width:600px !important} .=
+moz-text-html .hse-column{display:table-cell;vertical-align:top}.moz-text-h=
+tml .hse-section .hse-size-12{max-width:600px !important;width:600px !impor=
+tant} @media only screen and (min-width:640px){.hse-column-container{max-wi=
+dth:600px !important;width:600px !important} .hse-column{display:table-cell=
+;vertical-align:top}.hse-section .hse-size-12{max-width:600px !important;wi=
+dth:600px !important} }@media only screen and (max-width:639px){.hse-body-w=
+rapper-td{padding-top:20px !important} #section-1 .hse-column-container{bac=
+kground-color:#fff !important} }@media screen and (max-width:639px){.social=
+-network-cell{display:inline-block} }@media only screen and (max-width:639p=
+x){.hse-body-wrapper-td{padding-bottom:20px !important} #section-4 .hse-col=
+umn-container{background-color:#fff !important} }</style> <style type=3D"te=
+xt/css">#hs_body #hs_cos_wrapper_main a[x-apple-data-detectors]{color:inher=
+it !important;text-decoration:none !important;font-size:inherit !important;=
+font-family:inherit !important;font-weight:inherit !important;line-height:i=
+nherit !important} a{text-decoration:underline}p{margin:0}body{-ms-text-siz=
+e-adjust:100%;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialia=
+sed;moz-osx-font-smoothing:grayscale} table{border-spacing:0;mso-table-lspa=
+ce:0;mso-table-rspace:0}table,td{border-collapse:collapse} img{-ms-interpol=
+ation-mode:bicubic}p,a,li,td,blockquote{mso-line-height-rule:exactly} .Shad=
+owHTML p,.sh-modified-inline p{margin:0}</style> <!-- Styles from gex.html =
+--> <style type=3D"text/css"> /* Body Styles and Resets */ * {font-family: =
+Helvetica, Arial, sans-serif; font-size:inherit;} a {color: inherit; font-s=
+ize: inherit; line-height:inherit; text-decoration: inherit;} a:hover {colo=
+r: inherit; font-size: inherit; line-height:inherit; text-decoration: inher=
+it;} em {font-style: normal;} /* Fonts */ @font-face { font-family: 'Object=
+SansHeavy'; font-style: normal; font-weight: 800; src: url('https://www.zil=
+lowstatic.com/s3/constellation-website/public/shared/fonts/object-sans/late=
+st/object-sans-heavy.woff2') format('woff2'); mso-font-alt: 'Arial Black';}=
+ body{ padding:0; margin:0 auto !important; font-family: Helvetica, Arial, =
+sans-serif !important; mso-hyphenate: none !important; } /* hovers */ .prim=
+aryHover:hover { background: #0033AB !important;} .secondaryHoverWhite:hove=
+r { background: #FFFFFF !important; border-color: none !important; color: #=
+111116 !important;} .secondaryHoverBlue:hover { background: #F4F9FF !import=
+ant; border-color: #0033AB !important; color: #0033AB !important;} .textHov=
+erBlue:hover { text-decoration: underline !important; color: #0033AB !impor=
+tant; } .textHoverWhite:hover { text-decoration: none !important; color: #E=
+EEEF0 !important; } @media screen and (-webkit-min-device-pixel-ratio:0) { =
+.textHoverWhite:hover img.arrowHoverWhite { content: url(https://www.zillo=
+wstatic.com/bedrock/app/uploads/sites/36/2025/06/arrowRightWH.png) !importa=
+nt; } .textHoverBlue:hover img.arrowHoverBlue { content: url(https://www.zi=
+llowstatic.com/bedrock/app/uploads/sites/36/2025/06/arrowRightBH.png) !impo=
+rtant; } } h1, h2, h3, h4, p, a, li, td, body, table {-ms-text-size-adjust:=
+ 100%; -webkit-text-size-adjust: 100%;} table, td{mso-table-lspace: 0pt; ms=
+o-table-rspace: 0pt;} table{border-collapse: collapse;} a[x-apple-data-dete=
+ctors] { color: inherit !important; text-decoration: none !important; font-=
+size: inherit !important; font-family: inherit !important; font-weight: inh=
+erit !important; line-height: inherit !important; } #MessageViewBody, #Mess=
+ageWebViewDiv{ width: 100% !important;} .ExternalClass .msohide, [owa] .mso=
+hide { display:none;} /* slightly different */ body, #bodyTable { height: 1=
+00%; margin:0 auto !important; padding: 0; width: 100%; -webkit-font-smooth=
+ing: antialiased; -moz-osx-font-smoothing: grayscale; } h1, h2, p { margin:=
+ 0; padding: 0; } /* Ensure that images dont have borders, text-decoration =
+and unwanted spacing */ img, a img { border: 0 !important; height: auto; li=
+ne-height: 100%; outline: none; text-decoration: none; } /* Allow smoother =
+rendering of resized image in IE */ img { -ms-interpolation-mode: bicubic; =
+} u + .body .glist { margin-left: 0 !important;} body[data-outlook-cycle] .=
+image {width: 36px; height: 36px;} @media only screen and (max-width: 599px=
+) { u + .body .full-wrap { width: 100% !important; width: 100vw !important;=
+} u + .body .glist { margin-left: 8px !important;} } @media screen and (min=
+-width: 481px) and (max-width: 600px) { .w20m { width: 20% !important;} } @=
+media screen and (max-width: 480px), screen and (max-device-width: 480px) {=
+ * { padding:0;} body {width:100% !important; text-align:center !important;=
+} .block {display: block !important;} .displayTable { display: table !impor=
+tant;} .displayBlock { display: block !important;} .tableCell { display: ta=
+ble-cell !important; vertical-align: top !important; } .hide {display: none=
+ !important} .show { display: block !important; max-height: none !important=
+; overflow: visible !important;} .height28 { height: 28px !important;} .hei=
+ght24 { height: 24px !important;} .height106 { height: 106px !important;} .=
+heightauto {height:auto !important;} .width100perc {width:100% !important;}=
+ .width90perc {width:90% !important;} .width50perc {width:50% !important;} =
+.width129 {width:129px !important;} .width144 {width:144px !important;} .f=
+luid-100perc { width:100% !important; min-width: 200px !important; max-widt=
+h: 480px !important;} .mw504 { max-width: 504px !important;} .border202000 =
+{ border-radius: 20px 20px 0 0 !important;} /* padding */ /* all */ .pad0 {=
+padding: 0px !important;} /* left/right */ .padlr0 {padding-left: 0px !impo=
+rtant; padding-right: 0px !important;} .padlr20 {padding-left: 20px !import=
+ant; padding-right: 20px!important;} .padlr24 {padding-left: 24px !importan=
+t; padding-right: 24px!important;} /* bottom */ .padb0 {padding-bottom: 0px=
+ !important;} .padb4 {padding-bottom: 4px !important;} .padb8 {padding-bott=
+om: 8px !important;} .padb16 {padding-bottom: 16px !important;} .padb20 {pa=
+dding-bottom: 20px !important;} .padb24 {padding-bottom: 24px !important;} =
+.padb32 {padding-bottom: 32px !important;} /* top */ .padt0 {padding-top:0=
+px !important;} .padt12 {padding-top:12px !important;} .padt16 {padding-top=
+:16px !important;} .padt24 {padding-top:24px !important;} .padt32 {padding-=
+top:32px !important;} /* right */ .padr0 {padding-right:0px !important;} .p=
+adr4 {padding-right:4px !important;} .padr8 {padding-right:8px !important;}=
+ .padr16 {padding-right:16px !important;} .padr24 {padding-right:24px !impo=
+rtant;} .padr32 {padding-right:32px !important;} .padr40 {padding-right:40p=
+x !important;} /* left */ .padl0 {padding-left:0px !important;} .padl4 {pad=
+ding-left:4px !important;} .padl8 {padding-left:8px !important;} .padl16 {p=
+adding-left:16px !important;} .padl24 {padding-left:24px !important;} .padl=
+32 {padding-left:32px !important;} .padl40 {padding-left:40px !important;} =
+/* Mobile Font Changes */ .font12 {font-size: 12px !important; line-height:=
+ 18px !important;} .font14 {font-size: 14px !important; line-height: 16px !=
+important;} .font16SubHeadline {font-size: 16px !important; line-height: 24=
+px !important; font-family: Helvetica, Arial, sans-serif !important; font-w=
+eight: 700 !important;} .font20 {font-size: 20px !important; line-height: 2=
+4px !important;} .font24 {font-size: 24px !important; line-height: 28px !im=
+portant;} .font36 {font-size: 36px !important; line-height: 44px !important=
+;} /* Border Radius */ .borderRadiusRight {border-radius: 0px 12px 12px 0px=
+ !important;} .borderRadiusLeft {border-radius: 12px 0px 0px 12px !importan=
+t;} /* Alignment */ .alignleft {text-align: left !important;} .aligncenter =
+{text-align: center !important;} .button {font-size: 14px !important; line-=
+height: 14px !important; padding: 13px 18px !important;} /* Column Directio=
+n */ .dir {direction: ltr !important;} /* Other Mobile Classes */ .apple_ad=
+dress a {font-family: Helvetica, Arial, sans-serif !important; text-decorat=
+ion: none !important; font-size:12px !important; line-height: 16px !importa=
+nt; font-weight: 400 !important;} .background-size {background-size: cover =
+!important; background-position:50% 50% !important;} img.show {display: blo=
+ck !important; height: auto !important;} td.stack {width: 100% !important;d=
+isplay: block !important;} th.stack {width: 100% !important;display: block =
+!important;} } </style> <style type=3D"text/css"> /* DARK MODE STYLES INITI=
+ALIZED */ :root { color-scheme: light dark; supported-color-schemes: light =
+dark;} /* DARK MODE STYLES FOR iOS, APPLE MAIL, OUTLOOK.COM, OUTLOOK 2019 (=
+MACOS), OUTLOOK APP (iOS) */ @media (prefers-color-scheme: dark ) { /* Cust=
+om Dark Mode Background Color */ /* Custom Dark Mode Font Colors */ h1, h2,=
+ h3, h5, p, span, a, b, li { color: #ffffff !important;} /* Custom Dark Mod=
+e Text Link Color */ .dmclink { color: #65B4FF !important;} .dmcblue400 { c=
+olor: #0041D9 !important;} .dmcwhite { color: #FFFFFe !important;} .dmcteal=
+400 { color: #2DCEBC !important;} .dmcteal800 { color: #053630 !important;}=
+ .dmcgreen300 { color: #9FF17B !important;} .dmcpurple300 { color: #E6A8FF =
+!important;} .dmcblack { color: #000000 !important;} .dmcgray400 { color: #=
+A7A6AB !important;} .dmcgray600 { color: #111116 !important; } .dmcgray500 =
+{ color: #7e7f8e !important;} .dmcred500 { color: #fa3d45 !important; } .dm=
+blink {border-color: #65B4FF !important;} .dmbwhite {border-color: #FFFFFe =
+!important;} .dmbgray500 {border-color: #54545A !important;} .dmbblack { bo=
+rder-color: #0A0A14!important;} .dmbgray800 { background-color: #2a2a33 !im=
+portant;} .dmbgray900 {background-color: #212129 !important;} .dmblack { ba=
+ckground-color: #151516 !important; } .dmgray600 { background-color: #11111=
+6 !important; } .dmgray50 { background-color: #F7F7F7 !important; } .dmbutt=
+onPrimary { background-color: #65B4FF !important; color: #000 !important; b=
+order-color: none !important;} .dmbuttonSecondaryWhite { background-color: =
+none !important; color: #FFF !important; border-color: #FFF !important;} .d=
+mbuttonSecondaryBlue { background-color: none !important; color: #65B4FF !i=
+mportant; border-color: #65B4FF !important; } .dmteal800 { background-color=
+: #053630 !important;} .dmteal600 { background-color: #136F65 !important;} =
+.dmteal100 { background-color: #CEFDF5 !important;} .dmpurple500 { backgro=
+und-color: #891EFA !important;} .dmpurple800 { background-color: #3B0470 !i=
+mportant;} .dmWaterfront { background-color: #001962 !important;} .dmblue90=
+0 { background-color: #001962 !important;} .dmpurple400 { background-color:=
+#CA8FFF !important;} .dmblue400 {background-color: #65B4FF !important;} .dm=
+gray400 {background-color: #ADADB6 !important;} .dmArrowFilter {filter: inv=
+ert(70%) sepia(84%) saturate(2707%) hue-rotate(185deg) brightness(104%) con=
+trast(102%);} .dmIconFilterBlack {filter: invert(5%) sepia(10%) saturate(13=
+30%) hue-rotate(201deg) brightness(99%) contrast(95%);} .dmIconFilterWhite =
+{filter: brightness(0.96) sepia(0.03) hue-rotate(210deg) saturate(1.2);} .c=
+ardElevated { border: none !important; box-shadow: none !important;} .cardE=
+levated:hover .dmBgGray900 { background-color: #2a2a33 !important;} .primar=
+yHover:hover { background: #9ACDFF !important;} .secondaryHoverWhite:hover =
+{ background:#FFFFFF !important; border-color:none !important; color: #1111=
+16 !important;} .secondaryHoverBlue:hover { background:#000E42 !important; =
+border-color: #9ACDFF !important;color: #9ACDFF !important;} .textHoverBlue=
+:hover { color:#65B4FF !important; text-decoration: underline !important;} =
+.propertyCardSM:hover .cardElevated { box-shadow: 0px 8px 20px 0px rgba(0,=
+ 0, 0, 0.15) !important;} .dmbnone {border-left:0px !important; border-righ=
+t:0px !important; border-top:0px !important; border-bottom:0px !important;}=
+ .imgDark { display: block !important;} .imgLight { display: none; display:=
+ none !important;} } </style> <style> _:-webkit-full-screen, _::-webkit-ful=
+l-page-media, _:future, :root .cardElevated, #converted-body .cardElevated =
+{ border: none !important; } .cardElevated { border: none !important; } .& =
+.yahooAolOnly { display: /* table !important */ ; } .& .yahooAolWhite { ba=
+ckground-color: /* #ffffff !important */ ; } img { background-color: transp=
+arent !important; } </style> <style type=3D"text/css"> table, td, tr, div, =
+font, p, li { font-family: Helvetica, Arial, sans-serif !important; } a { t=
+ext-decoration: none; font-family: Helvetica, Arial, sans-serif !important;=
+ } span { font-family: Helvetica, Arial, sans-serif !important; } h1, h2, h=
+3 { font-family: 'ObjectSansHeavy', 'Arial Black', Arial, sans-serif !impor=
+tant; } .headlineTextColor { font-family: Helvetica, Arial, sans-serif !imp=
+ortant; } .listFix { width: 550px !important; } </style> </head> <body styl=
+e=3D"margin:0; padding:0; background-color:#ffffff;"> <center style=3D"widt=
+h:100%; background-color:#ffffff;"> <table role=3D"presentation" cellpaddin=
+g=3D"0" cellspacing=3D"0" width=3D"100%" bgcolor=3D"#ffffff"> <tbody><tr> <=
+td align=3D"center"> <table role=3D"presentation" cellpadding=3D"0" cellspa=
+cing=3D"0" width=3D"100%" style=3D"max-width:600px; margin:0 auto;"> <tbody=
+><tr><td> <!-- BEGIN: gex2.html --> <div id=3D"preview_text" style=3D"displ=
+ay:none;font-size:1px;color:#FFFFFF;line-height:1px;max-height:0px;max-widt=
+h:0px;opacity:0;overflow:hidden;" lang=3D"en">Join the waiting list for our=
+ 4th drop!</div> <!--[if gte mso 9]> <v:background xmlns:v=3D"urn:schemas-m=
+icrosoft-com:vml" fill=3D"t"> <v:fill type=3D"tile" size=3D"100%,100%" colo=
+r=3D"#ffffff"/> </v:background> <![endif]--> <div class=3D"hse-body-backgro=
+und" lang=3D"en" style=3D"background-color:#ffffff" bgcolor=3D"#ffffff"> <t=
+able role=3D"presentation" class=3D"hse-body-wrapper-table" cellpadding=3D"=
+0" cellspacing=3D"0" style=3D"margin:0; padding:0; width:100% !important; m=
+in-width:320px !important; height:100% !important" width=3D"100%" height=3D=
+"100%"> <tbody><tr> <td class=3D"hse-body-wrapper-td" valign=3D"top" style=
+=3D"font-family:Arial, sans-serif; font-size:16px; color:#5d5d5d; word-brea=
+k:break-word; padding-top:20px; padding-bottom:20px"> <a href=3D"https://dk=
+jrfd04.eu1.hubspotlinksstarter.com/Ctc/ZZ+113/dkjrFD04/VWnNky6Rdv9nW3923j42=
+jtdKJW2F3lfm5F2zdgMQqrTz9gHVYW50lwYY6lZ3lKW8YtYrk493HvrW9gcK506VrXl-W6zGwP8=
+2VSbhlW26bYxq6NQLX8W3-570R3C3_msW1_c3MC91kpTDW61klwP2TjwsDW64BXS53spF7lN8hX=
+tmx5VGf9W120WvS6YDdBWW6JpNWG9911B_N50fpx34QfRxW8-Vvh87hl44fVdL3nQ32y0q9W4P4=
+KM36lKhkWW7F7p6b39bpMSV73zbY52NBbfW2KP1CK7j6G6rN8tjNGh-4SzzW5qc-MP5mlSZfW7W=
+f7-X4tBfxPW5VYbC28Zq8h0VHxndP8D0Jc0W8WlzN_8c9fPTW3kBhcP6f2199W5_85vf35_6T1W=
+7Ddm_F3jPV4lW6f_MMN2Wp-wGW1Z5qBV3WBJXYW74WV088TJ84BVWCGSQ2FW2N0W80Zkg_8rsSB=
+yW8RklYg3SrsPBVGQjCx7nB7F0W4cPHMT8WPkFMW2tXngF2d0prQW377xPL8TpnbvW7ySDsY3GX=
+_C1W6v34j85kD8JDW40Hm4l3ZGBgPW8zw82g3PMb-FW85pF4P1lfSfyW1KGKz_6wcgBPW3KXhCj=
+1Sh0HPW1mWw7p3kvjX9W2W9MNq8qkYg2W1l4KC429hfSqW7DYMgq1bvKdcV8r5X7436WsmW8jn_=
+DG6NrfFdW8xgVfj24_-fgVcGV4C8B494CW1s451r8JDtcRW790bH27Sjym5W3N6TPj3FlqhzW1q=
+yYMF1BKTS1W1h3743187mWkW50QNpK780mSzN6Fwkm3v32dhW3j774_2LBLrhVH3Pq-1X-PQYW1=
+4lFql8Gd0NSW8c-wGC4PWbNsW71P3G031FZDNf5ZrKfY04" target=3D"_blank"> <img src=
+=3D"https://147140313.fs1.hubspotusercontent-eu1.net/hubfs/147140313/Captur=
+e%20d%E2%80%99%C3%A9cran%202025-10-26%20%C3%A0%2001.00.57.png" style=3D"wid=
+th:1300px;"> </a> </td> </tr> </tbody></table> </div> <img src=3D"https://c=
+xzYH04.na1.hubspotlinks.com/Cto/I4+113/cxzYH04/VW6p3N26xZ2SW8WGFb64lhgStW7z=
+r5cm5F0ljwW5q1h3W8fYxLH2db1" alt=3D"" width=3D"1" height=3D"1" border=3D"0"=
+ style=3D"display:none!important;min-height:1px!important;width:1px!importa=
+nt;border-width:0!important;margin-top:0!important;margin-bottom:0!importan=
+t;margin-right:0!important;margin-left:0!important;padding-top:0!important;=
+padding-bottom:0!important;padding-right:0!important;padding-left:0!importa=
+nt"> <!-- END: gex2.html --> <!-- Spacer (Gmail-safe 500px) --> <table role=
+=3D"presentation" width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" aria-h=
+idden=3D"true"> <tbody><tr> <td height=3D"1500" style=3D"line-height:500px;=
+ font-size:0; mso-line-height-rule:exactly;">&nbsp;</td> </tr> </tbody></ta=
+ble> <!-- BEGIN: gex.html --> <div style=3D"color:transparent;visibility:hi=
+dden;opacity:0;font-size:0px;border:0;max-height:1px;width:1px;margin:0px;p=
+adding:0px;border-width:0px!important;display:none!important;line-height:0p=
+x!important;"><img border=3D"0" width=3D"1" height=3D"1" src=3D"https://cli=
+ck.mail.zillow.com/q/Cvs6sUURQ8CJhqVh1f8vYQ~~/AAAAARA~/svZG7sIfdeXltRMMn-HW=
+jFoyrEWSitG4Wm4BuG_N4EkoOZs6mNToX-BQj9tsdxps73UQI5ueIULIAJW87xU45A~~" alt=
+=3D""></div> <center role=3D"article" aria-roledescription=3D"email" lang=
+=3D"en" style=3D"width: 100%; background-color: #FFFFFF;" xml:lang=3D"en"> =
+<!--[if mso | IE]> <table role=3D"presentation" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" width=3D"100%" style=3D"background-color: #FFFFFF;"> =
+<tr> <td> <![endif]--> <!-- START Email --> <table role=3D"presentation" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" height=3D"100%" width=3D"100=
+%" bgcolor=3D"#ffffff" class=3D"dmblack"> <tbody><tr> <td width=3D"100%" al=
+ign=3D"center" valign=3D"top"> <!--[if (gte mso 9)|(IE)]> <table role=3D"pr=
+esentation" align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"=
+0" width=3D"600"> <tr> <td align=3D"center" valign=3D"top" width=3D"600"> <=
+![endif]--> <table class=3D"width100perc dmblack" role=3D"presentation" wid=
+th=3D"100%" align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" bgcolor=3D"#FFFFFF" style=3D"background-color: #FFFFFF;"> <tbody><tr> <t=
+d width=3D"600"> <div style=3D"display: none; max-height: 0px; overflow: hi=
+dden;"></div> <div style=3D"font-size: 13px; color: #FFFFFF;" class=3D"spac=
+er">&nbsp;</div> <!-- Create white space after the desired preview text so =
+email clients don't pull other distracting text into the inbox preview. Ext=
+end as necessary. --> <!-- Preview Text Spacing Hack --> <div style=3D"disp=
+lay: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0p=
+x; opacity: 0; overflow: hidden; mso-hide: all; font-family: 'Open-Sans', A=
+rial, sans-serif;"> &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwn=
+j;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&=
+nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbs=
+p;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&=
+zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp; &zwnj;&nbsp;&zwnj;&nbsp;&zw=
+nj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;=
+&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nb=
+sp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;=
+&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zw=
+nj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;=
+&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nb=
+sp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;=
+&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zw=
+nj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;=
+&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nb=
+sp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;=
+&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zw=
+nj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;=
+&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nb=
+sp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;=
+ </div> <table class=3D"width100perc dmblack" width=3D"516" role=3D"present=
+ation" cellspacing=3D"0" cellpadding=3D"0" align=3D"center" bgcolor=3D"FFFF=
+FF" style=3D"background-color: #FFFFFF; width:100%;max-width: 516px;"> <tbo=
+dy><tr> <td style=3D"font-size: 0px; line-height: 0px; text-align: center; =
+margin: 0;" height=3D"32">&nbsp;</td> </tr> <tr> <td class=3D"padlr20" widt=
+h=3D"530" align=3D"left"> <a border=3D"0" title=3D"Zillow" href=3D"https://=
+click.mail.zillow.com/f/a/HBHt2_7X049ehH2lCmC4Yw~~/AAAAARA~/tJbGiIE7VgSnT9G=
+KE49jGLZAeaHt0czEtknT853OI0Ht6yFTUkwi5-b5SeA2a_mwa9rgUWZdpMTFxGMHaQd-gihRi6=
+OIRhppasICHQ79uJE~=3Ftarget=3Dhttps%3A%2F%2Fwww.zillow.com%3Futm_content%3D=
+landing_page_hmpg_logo%26utm_campaign%3Demm_zg_g_buzzlistingswelove-1_10122=
+5_a_1_national_any_edu%26utm_source%3Dsd%26utm_medium%3Demail" style=3D"tex=
+t-align: left; text-decoration: none !important;"> <img border=3D"0" width=
+=3D"auto" style=3D"width:auto; min-height:16px; max-height: 36px;" align=3D=
+"left" class=3D"height24 imgLight" src=3D" https://www.zillowstatic.com/bed=
+rock/app/uploads/sites/36/2025/08/zillowBG.png" alt=3D"Zillow" height=3D"36=
+"> <!--[if !mso]><!--> <img border=3D"0" width=3D"auto" style=3D"width:auto=
+; min-height:16px; max-height: 24px; overflow: hidden !important; display:n=
+one;" align=3D"left" class=3D"height24 imgDark" src=3D"https://www.zillowst=
+atic.com/bedrock/app/uploads/sites/36/2025/08/zillowW.png" alt=3D"Zillow" h=
+eight=3D"24"> <!--<![endif]--> </a> </td> </tr> </tbody></table> <table cla=
+ss=3D"width100perc dmblack" width=3D"600" cellspacing=3D"0" cellpadding=3D"=
+0" align=3D"center" bgcolor=3D"#FFFFFF" style=3D"background-color: #FFFFFF;=
+ width: 600px;" role=3D"presentation"> <tbody><tr> <td style=3D"font-size: =
+0px; line-height: 0px; text-align: center; margin: 0;" height=3D"32">&nbsp;=
+</td> </tr> <!-- image --> <!-- headline --> <tr> <td class=3D"padb20 padlr=
+24" style=3D"padding:0px 48px 24px; mso-line-height-rule: exactly;"> <h1 cl=
+ass=3D"font24" style=3D"margin:0; font-weight: 800; font-size: 36px; line-h=
+eight:44px; color: #111116; text-align: left; font-family: 'ObjectSansHeavy=
+', 'Arial Black', Arial, Helvetica, sans-serif;">Listings we love</h1> </td=
+> </tr> <!-- body copy 01 --> <!-- inverted image --> <!-- body copy 2 --> =
+<tr> <td class=3D"padlr24" align=3D"center" style=3D"padding:0px 48px 0px;m=
+so-line-height-rule: exactly;"> <p style=3D"margin:0; font-size: 16px; line=
+-height:24px; color: #111116; text-align:left; font-family: Helvetica, Aria=
+l, sans-serif">Whether a sprawling study or a cozy nook, each of these home=
+s under $500,000 boasts the perfect space for escaping into the pages of a =
+book. Check them out =E2=80=94 no library card&nbsp;required.</p> </td> </t=
+r> <!-- cta --> <tr> <td style=3D"font-size: 0px; line-height: 0px; text-al=
+ign: center; margin: 0; width:600px;" height=3D"32" class=3D"width90perc">&=
+nbsp; </td> </tr> </tbody></table> <!-- Property 1 --> <!-- / Property 1 --=
+> <!-- Property 2 --> <!-- / Property 2 --> <!-- Property 3 --> <!-- / Prop=
+erty 3 --> <!-- Property 4 --> <!-- / Property 4 --> <!-- Property 5 --> <!=
+-- / Property 5 --> <table class=3D"width100perc" width=3D"600" cellspacing=
+=3D"0" cellpadding=3D"0" align=3D"center" style=3D"width:600px;" role=3D"pr=
+esentation"> <tbody><tr> <td class=3D"padlr24" style=3D"padding: 0;"> <tabl=
+e class=3D"width100perc" width=3D"504" cellspacing=3D"0" cellpadding=3D"0" =
+align=3D"center" style=3D"width:504px;" role=3D"presentation"> <tbody><tr> =
+<td style=3D"padding: 32px 0 0;"> <a style=3D"text-decoration: none; border=
+: none;" href=3D"https://click.mail.zillow.com/f/_web_/2WIfgxMC_mQelCW2iNrN=
+dQ~~/AAAAARA~/tJbGiIE7VgSnT9GKE49jGPAk0bZ3PsCgsVOyEnmQswBIU8mTYD6_M8A-WBD6t=
+JnBF1CghlbBw3KmREnD0ldZbReUYjt_OAXq4aWw8Q54w8Q~=3Ftarget=3Dhttps%3A%2F%2Fww=
+w.zillow.com%2Fhomedetails%2F182-Lcpl-Jacob-Beisel-Rd-Lackawaxen-PA-18435%2=
+F89404426_zpid%2F%3Futm_content%3Dproperty_lwl_curl_up_image%26utm_campaign=
+%3Demm_zg_g_buzzlistingswelove-1_101225_a_1_national_any_edu%26utm_source%3=
+Dsd%26utm_medium%3Demail"><img class=3D"width100perc hauto" src=3D"https://=
+delivery.digitallibrary.zillowgroup.com/public/1011_LWL_Image_Export_Standa=
+rd_01_504x322_jpg_Lifecycle_Marketing_Hero.jpg" width=3D"504" style=3D"widt=
+h: 504px; height: auto; border-radius: 20px 20px 0 0; display: block;" alt=
+=3D"A cozy reading nook with a built-in cushioned bench and pillows."></a> =
+</td> </tr> <tr> <td class=3D"padlr24 dmgray600" style=3D"background-color:=
+ #F7F7F7; padding: 24px; border-radius: 0 0 20px 20px;"> <table align=3D"le=
+ft" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation">=
+ <tbody><tr> <td> <h2 style=3D"font-size: 20px; line-height: 24px;font-fami=
+ly: 'ObjectSansHeavy', 'Arial Black', Arial, Helvetica, sans-serif; font-we=
+ight: 800; color: #111116; padding: 0px; text-align: left;">A river runs be=
+hind&nbsp;it</h2> </td> </tr> </tbody></table> <table align=3D"left" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation"> <tbody><t=
+r> <td style=3D"padding: 16px 0;"> <p style=3D"margin:0; font-size: 16px; l=
+ine-height:24px; color: #111116; text-align: left; font-family: Helvetica, =
+Arial, sans-serif;"><strong style=3D"">What we love:</strong> Imagine curli=
+ng up with a novel in the darling reading nook, the sound of the rushing ri=
+ver pouring in through the cottage window.&nbsp;Bliss!</p> </td> </tr> </tb=
+ody></table> <table align=3D"left" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" role=3D"presentation"> <tbody><tr> <td> <div> <!--cta--> <a class=
+=3D"secondaryHoverBlue dmbuttonSecondaryBlue" style=3D"color:#0041D9; borde=
+r: 1px solid #0041D9; background-color: none; font-size:16px;font-family: H=
+elvetica, Arial, sans-serif; font-weight: 700; text-decoration: none; paddi=
+ng: 12px 16px; border-radius: 12px; display: inline-block; mso-padding-alt:=
+ 0; line-height: 24px;" bgcolor=3D"none" href=3D"https://click.mail.zillow.=
+com/f/_web_/HjmcdE4dLzT4CCtAbuGxCw~~/AAAAARA~/tJbGiIE7VgSnT9GKE49jGMf5m2q43=
+EU9CSJFbQHM2EJi8W4zFMDYJwQ2lXff11TZ7bDP2gGU3IgP26MG6sg2Iv-dt4s-lMyjQHno2OYZ=
+C70~=3Ftarget=3Dhttps%3A%2F%2Fwww.zillow.com%2Fhomedetails%2F182-Lcpl-Jacob=
+-Beisel-Rd-Lackawaxen-PA-18435%2F89404426_zpid%2F%3Futm_content%3Dproperty_=
+lwl_curl_up_button%26utm_campaign%3Demm_zg_g_buzzlistingswelove-1_101225_a_=
+1_national_any_edu%26utm_source%3Dsd%26utm_medium%3Demail"> <!--[if mso]><i=
+ style=3D"letter-spacing:16px;mso-font-width:-100%;mso-text-raise:20pt">&nb=
+sp;</i>&nbsp;&nbsp; <![endif]--><span class=3D"secondaryHoverBlue dmbuttonS=
+econdaryBlue" style=3D"mso-text-raise:10pt;font-family: Helvetica, Arial, s=
+ans-serif; font-weight: 700 !important;">Curl up</span> <!--[if mso]>&nbsp;=
+&nbsp;<i style=3D"letter-spacing: 16px;mso-font-width:-100%">&nbsp;</i> <![=
+endif]--> </a> </div> </td> </tr> </tbody></table> </td> </tr> </tbody></ta=
+ble> </td> </tr> <tr> <td class=3D"padlr24" style=3D"padding: 0;"> <table c=
+lass=3D"width100perc" width=3D"504" cellspacing=3D"0" cellpadding=3D"0" ali=
+gn=3D"center" style=3D"width:504px;" role=3D"presentation"> <tbody><tr> <td=
+ style=3D"padding: 24px 0 0;"> <a style=3D"text-decoration: none; border: n=
+one;" href=3D"https://click.mail.zillow.com/f/_web_/QgAuG92yKuwYzjSqGhwdVw~=
+~/AAAAARA~/tJbGiIE7VgSnT9GKE49jGIpOBW9tYm-wR5u3q7KTjyfKFpFyXfqgCiHHtnJz5p1C=
+1wAOYgJQJQlSnC4CNb7OhPBzA3MhYkEj_53LQnEy9b0~=3Ftarget=3Dhttps%3A%2F%2Fwww.z=
+illow.com%2Fhomedetails%2F400-S-Woodlawn-Ave-Saint-Louis-MO-63122%2F2839224=
+_zpid%2F%3Futm_content%3Dproperty_lwl_adventure_awaits_image%26utm_campaign=
+%3Demm_zg_g_buzzlistingswelove-1_101225_a_1_national_any_edu%26utm_source%3=
+Dsd%26utm_medium%3Demail"><img class=3D"width100perc hauto" src=3D"https://=
+delivery.digitallibrary.zillowgroup.com/public/1011_LWL_Image_Export_Standa=
+rd_03_504x322_jpg_Lifecycle_Marketing_Hero.jpg" width=3D"504" style=3D"widt=
+h: 504px; height: auto; border-radius: 20px 20px 0 0; display: block;" alt=
+=3D"A hallway library nook with white built-in corner bookshelves."></a> </=
+td> </tr> <tr> <td class=3D"padlr24 dmgray600" style=3D"background-color: #=
+F7F7F7; padding: 24px; border-radius: 0 0 20px 20px;"> <table align=3D"left=
+" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation"> <=
+tbody><tr> <td> <h2 style=3D"font-size: 20px; line-height: 24px;font-family=
+: 'ObjectSansHeavy', 'Arial Black', Arial, Helvetica, sans-serif; font-weig=
+ht: 800; color: #111116; padding: 0px; text-align: left;">The secret garden=
+</h2> </td> </tr> </tbody></table> <table align=3D"left" border=3D"0" cellp=
+adding=3D"0" cellspacing=3D"0" role=3D"presentation"> <tbody><tr> <td style=
+=3D"padding: 16px 0;"> <p style=3D"margin:0; font-size: 16px; line-height:2=
+4px; color: #111116; text-align: left; font-family: Helvetica, Arial, sans-=
+serif;"><strong style=3D"">What we love:</strong> A book-filled study, seve=
+ral sweet nooks and a heavenly garden make this whimsical St. Louis home th=
+e ideal setting for quality time with a&nbsp;paperback.</p> </td> </tr> </t=
+body></table> <table align=3D"left" border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" role=3D"presentation"> <tbody><tr> <td> <div> <!--cta--> <a class=
+=3D"secondaryHoverBlue dmbuttonSecondaryBlue" style=3D"color:#0041D9; borde=
+r: 1px solid #0041D9; background-color: none; font-size:16px;font-family: H=
+elvetica, Arial, sans-serif; font-weight: 700; text-decoration: none; paddi=
+ng: 12px 16px; border-radius: 12px; display: inline-block; mso-padding-alt:=
+ 0; line-height: 24px;" bgcolor=3D"none" href=3D"https://click.mail.zillow.=
+com/f/_web_/bpqnbYuDDnVXasvnIZT7gw~~/AAAAARA~/tJbGiIE7VgSnT9GKE49jGFgfJ0Uer=
+LUUhVacadgJdfAm0c6_dHH5ItMdDAvbuqrChrlIb7nHDdkMcN6HgLaDJlnUH_1FCTT4mNiJZW07=
+PsM~=3Ftarget=3Dhttps%3A%2F%2Fwww.zillow.com%2Fhomedetails%2F400-S-Woodlawn=
+-Ave-Saint-Louis-MO-63122%2F2839224_zpid%2F%3Futm_content%3Dproperty_lwl_ad=
+venture_awaits_button%26utm_campaign%3Demm_zg_g_buzzlistingswelove-1_101225=
+_a_1_national_any_edu%26utm_source%3Dsd%26utm_medium%3Demail"> <!--[if mso]=
+><i style=3D"letter-spacing:16px;mso-font-width:-100%;mso-text-raise:20pt">=
+&nbsp;</i>&nbsp;&nbsp; <![endif]--><span class=3D"secondaryHoverBlue dmbutt=
+onSecondaryBlue" style=3D"mso-text-raise:10pt;font-family: Helvetica, Arial=
+, sans-serif; font-weight: 700 !important;">Adventure awaits</span> <!--[if=
+ mso]>&nbsp;&nbsp;<i style=3D"letter-spacing: 16px;mso-font-width:-100%">&n=
+bsp;</i> <![endif]--> </a> </div> </td> </tr> </tbody></table> </td> </tr> =
+</tbody></table> </td> </tr> <tr> <td class=3D"padlr24" style=3D"padding: 0=
+;"> <table class=3D"width100perc" width=3D"504" cellspacing=3D"0" cellpaddi=
+ng=3D"0" align=3D"center" style=3D"width:504px;" role=3D"presentation"> <tb=
+ody><tr> <td style=3D"padding: 24px 0 0;"> <a style=3D"text-decoration: non=
+e; border: none;" href=3D"https://click.mail.zillow.com/f/_web_/glr6GyBHVDU=
+J5v681qHp5g~~/AAAAARA~/tJbGiIE7VgSnT9GKE49jGPRLpE1QwJLB9WvqQiOqy4N2BIx7L2aH=
+FqRXJKLgqXL5FLhS5jmRmkndxABm8E4F6U0hWqlM5rmVfGEJmvj30eo~=3Ftarget=3Dhttps%3=
+A%2F%2Fwww.zillow.com%2Fhomedetails%2F109-E-4th-St-Corning-NY-14830%2F32565=
+355_zpid%2F%3Futm_content%3Dproperty_lwl_take_it_all_in_image%26utm_campaig=
+n%3Demm_zg_g_buzzlistingswelove-1_101225_a_1_national_any_edu%26utm_source%=
+3Dsd%26utm_medium%3Demail"><img class=3D"width100perc hauto" src=3D"https:/=
+/delivery.digitallibrary.zillowgroup.com/public/1011_LWL_Image_Export_Stand=
+ard_02_504x322_jpg_Lifecycle_Marketing_Hero.jpg" width=3D"504" style=3D"wid=
+th: 504px; height: auto; border-radius: 20px 20px 0 0; display: block;" alt=
+=3D"A sunroom with large windows looking out onto a lush green forest."></a=
+> </td> </tr> <tr> <td class=3D"padlr24 dmgray600" style=3D"background-colo=
+r: #F7F7F7; padding: 24px; border-radius: 0 0 20px 20px;"> <table align=3D"=
+left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation=
+"> <tbody><tr> <td> <h2 style=3D"font-size: 20px; line-height: 24px;font-fa=
+mily: 'ObjectSansHeavy', 'Arial Black', Arial, Helvetica, sans-serif; font-=
+weight: 800; color: #111116; padding: 0px; text-align: left;">A room with a=
+&nbsp;view</h2> </td> </tr> </tbody></table> <table align=3D"left" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation"> <tbody><t=
+r> <td style=3D"padding: 16px 0;"> <p style=3D"margin:0; font-size: 16px; l=
+ine-height:24px; color: #111116; text-align: left; font-family: Helvetica, =
+Arial, sans-serif;"><strong style=3D"">What we love:</strong> A light-drenc=
+hed sunroom complete with built-in shelving. Whatever the weather, reading =
+a day away under the skylights would be easy in this Corning, NY&nbsp;gem.<=
+/p> </td> </tr> </tbody></table> <table align=3D"left" border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" role=3D"presentation"> <tbody><tr> <td> <div> =
+<!--cta--> <a class=3D"secondaryHoverBlue dmbuttonSecondaryBlue" style=3D"c=
+olor:#0041D9; border: 1px solid #0041D9; background-color: none; font-size:=
+16px;font-family: Helvetica, Arial, sans-serif; font-weight: 700; text-deco=
+ration: none; padding: 12px 16px; border-radius: 12px; display: inline-bloc=
+k; mso-padding-alt: 0; line-height: 24px;" bgcolor=3D"none" href=3D"https:/=
+/click.mail.zillow.com/f/_web_/mFfWGNeZKkbtuNXLAfaWUw~~/AAAAARA~/tJbGiIE7Vg=
+SnT9GKE49jGMCkW4w7aF4GrSiOA3huYwQ5rOXy5eoJKCEq9qaiQW45PNw_IjMwsbN6HOz_nZ7r0=
+SFNSctMIv1yJo4Lij2xxWk~=3Ftarget=3Dhttps%3A%2F%2Fwww.zillow.com%2Fhomedetai=
+ls%2F109-E-4th-St-Corning-NY-14830%2F32565355_zpid%2F%3Futm_content%3Dprope=
+rty_lwl_take_it_all_in_button%26utm_campaign%3Demm_zg_g_buzzlistingswelove-=
+1_101225_a_1_national_any_edu%26utm_source%3Dsd%26utm_medium%3Demail"> <!--=
+[if mso]><i style=3D"letter-spacing:16px;mso-font-width:-100%;mso-text-rais=
+e:20pt">&nbsp;</i>&nbsp;&nbsp; <![endif]--><span class=3D"secondaryHoverBlu=
+e dmbuttonSecondaryBlue" style=3D"mso-text-raise:10pt;font-family: Helvetic=
+a, Arial, sans-serif; font-weight: 700 !important;">Take it all in</span> <=
+!--[if mso]>&nbsp;&nbsp;<i style=3D"letter-spacing: 16px;mso-font-width:-10=
+0%">&nbsp;</i> <![endif]--> </a> </div> </td> </tr> </tbody></table> </td> =
+</tr> </tbody></table> </td> </tr> <tr> <td style=3D"mso-hide:all; line-hei=
+ght: 0px; margin: 0; max-width:600px;width:100%;" class=3D" width100perc" h=
+eight=3D"32">&nbsp;</td> </tr> </tbody></table> <table role=3D"presentation=
+" align=3D"center" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" width=
+=3D"600" style=3D"width: 600px;" class=3D"dmblack width100perc"> <tbody><tr=
+> <td style=3D"color:#111116; padding:32px 48px 24px; mso-line-height-rule:=
+ exactly;" align=3D"center" class=3D"padlr24 padb24"> <h2 class=3D"dmcwhite=
+" style=3D"margin:0;font-family: 'ObjectSansHeavy', 'Arial Black', Arial, H=
+elvetica, sans-serif; font-size:20px; line-height:24px; font-weight: 800; t=
+ext-align: left;">Your next chapter starts&nbsp;here.</h2> </td> </tr> </tb=
+ody></table> <table class=3D"width100perc" width=3D"514" cellspacing=3D"0" =
+cellpadding=3D"0" align=3D"center" style=3D"width:514px;" role=3D"presentat=
+ion"> <tbody><tr> <th class=3D"width100perc block padb24" style=3D"font-siz=
+e: 16px; font-family:Helvetica, Arial, sans-serif; padding: 0; vertical-ali=
+gn: top; "> <table cellspacing=3D"0" cellpadding=3D"0" height=3D"40" border=
+=3D"0" style=3D"border-spacing:0; border-collapse: separate !important;" ro=
+le=3D"presentation" align=3D"center"> <tbody><tr> <td class=3D"secondaryHov=
+erBlue dmbuttonSecondaryBlue" width=3D"240" height=3D"40" align=3D"center" =
+valign=3D"middle" style=3D"font-family:Helvetica, Arial, sans-serif;font-si=
+ze: 16px; font-weight: 800; color: #0041D9; padding-left: 0px; padding-righ=
+t: 0px; border: 1px solid #0041D9; border-radius: 12px; width: 240px; heigh=
+t:40px;" role=3D"link"> <!--[if mso]>&nbsp;&nbsp;<![endif]--> <!--[if mso]>=
+&nbsp;&nbsp;<![endif]--> <a width=3D"240" class=3D"dmbuttonSecondaryBlue" s=
+tyle=3D"border:none; display:block!important;line-height:40px !important;ma=
+x-width:240px;width:100%; text-decoration: none !important; color: #0041D9;=
+" height=3D"40" href=3D"https://click.mail.zillow.com/f/_web_/m1hzCMsh29UMW=
+5_GxgrEkA~~/AAAAARA~/tJbGiIE7VgSnT9GKE49jGJZJ6ZaHg6dfW68JL9D9zWqitxw5zs7bP-=
+C1d0ZgVE4FfOQf4r4WHb8CHD90EWSIwvJRJF7lu4ZQXCOtPvS5AGU~=3Ftarget=3Dhttps%3A%=
+2F%2Fwww.zillow.com%2Fhomes%2F%3Futm_content%3Dserp_buy_button%26utm_campai=
+gn%3Demm_zg_g_buzzlistingswelove-1_101225_a_1_national_any_edu%26utm_source=
+%3Dsd%26utm_medium%3Demail">Browse for sale</a> <!--[if mso]>&nbsp;&nbsp;<!=
+[endif]--><!--[if mso]>&nbsp;&nbsp;<![endif]--> </td> </tr> </tbody></table=
+> </th> <th class=3D"width100perc block padb0" style=3D"font-size: 16px; fo=
+nt-family:Helvetica, Arial, sans-serif; padding: 0; vertical-align: top; ">=
+ <table cellspacing=3D"0" cellpadding=3D"0" height=3D"40" border=3D"0" styl=
+e=3D"border-spacing:0; border-collapse: separate !important;" role=3D"prese=
+ntation" align=3D"center"> <tbody><tr> <td class=3D"secondaryHoverBlue dmbu=
+ttonSecondaryBlue" width=3D"240" height=3D"40" align=3D"center" valign=3D"m=
+iddle" style=3D"font-family:Helvetica, Arial, sans-serif;font-size: 16px; f=
+ont-weight: 800; color: #0041D9; padding-left: 0px; padding-right: 0px; bor=
+der: 1px solid #0041D9; border-radius: 12px; width: 240px; height:40px;" ro=
+le=3D"link"> <!--[if mso]>&nbsp;&nbsp;<![endif]--> <!--[if mso]>&nbsp;&nbsp=
+;<![endif]--> <a width=3D"240" class=3D"dmbuttonSecondaryBlue" style=3D"bor=
+der:none;display:block!important;line-height:40px !important;max-width:240p=
+x;width:100%; text-decoration: none !important; color: #0041D9;" height=3D"=
+40" href=3D"https://click.mail.zillow.com/f/_web_/OruLxeOGkjwkAI_i5aoV3A~~/=
+AAAAARA~/tJbGiIE7VgSnT9GKE49jGPE7eGTI7i6_eNHlURhkPVGQav450WpNfhR37x85TtCJOi=
+U9mCmS7VK0UeHlz54b_CWuzKtVDhnkJC1jM_bgDUM~=3Ftarget=3Dhttps%3A%2F%2Fwww.zil=
+low.com%2Fhomes%2Ffor_rent%2F%3Futm_content%3Dserp_rnt_button%26utm_campaig=
+n%3Demm_zg_g_buzzlistingswelove-1_101225_a_1_national_any_edu%26utm_source%=
+3Dsd%26utm_medium%3Demail">Browse for rent</a> <!--[if mso]>&nbsp;&nbsp;<![=
+endif]--><!--[if mso]>&nbsp;&nbsp;<![endif]--> </td> </tr> </tbody></table>=
+ </th> </tr> </tbody></table> <table class=3D"width100perc" width=3D"600" c=
+ellspacing=3D"0" cellpadding=3D"0" align=3D"center" style=3D"width:600px; "=
+ role=3D"presentation"> <tbody><tr> <td style=3D"font-size: 0px; line-heigh=
+t: 0px; text-align: center; margin: 0; width:600px;" height=3D"32" class=3D=
+"width90perc">&nbsp; </td> </tr> </tbody></table> <table class=3D"width100p=
+erc dmblack" width=3D"600" cellspacing=3D"0" cellpadding=3D"0" align=3D"cen=
+ter" style=3D"width:600px;" role=3D"presentation"> <!-- hr --> <tbody><tr> =
+<td class=3D"padlr24" style=3D"padding:0px 48px 0px;" align=3D"center"> <ta=
+ble align=3D"center" width=3D"60" cellspacing=3D"0" cellpadding=3D"0" borde=
+r=3D"0" role=3D"presentation"> <tbody><tr> <td align=3D"center"> <img width=
+=3D"60" aria-hidden=3D"true" style=3D"display: block;" src=3D"https://www.z=
+illowstatic.com/bedrock/app/uploads/sites/36/2024/06/dividerDecorative.png"=
+> </td> </tr> </tbody></table> </td> </tr> </tbody></table> <table class=3D=
+"width100perc dmblack" width=3D"504" cellspacing=3D"0" cellpadding=3D"0" al=
+ign=3D"center" bgcolor=3D"#ffffff" style=3D"background-color: #ffffff;width=
+:504px;" role=3D"presentation"> <tbody><tr> <td class=3D"padlr24" style=3D"=
+ padding:32px 48px 24px; mso-line-height-rule: exactly;"> <h2 class=3D"font=
+20" style=3D"margin:0; font-weight: 800; font-size: 24px; line-height:28px;=
+ color: #111116; text-align: left; font-family: 'ObjectSansHeavy', 'Arial B=
+lack', Arial, Helvetica, sans-serif;">Get home with Zillow&nbsp;Home&nbsp;L=
+oans</h2> </td> </tr> <tr> <td class=3D"padlr24" align=3D"center"> <div cla=
+ss=3D"width100perc" style=3D"overflow: hidden !important;"> <table dir=3D"r=
+tl" align=3D"center" role=3D"presentation" width=3D"504" cellpadding=3D"0" =
+cellspacing=3D"0" border=3D"0" class=3D"dmbnone width100perc" bgcolor=3D"13=
+6F65" style=3D"background-color: #136F65;border-collapse: separate; margin:=
+ 0 auto; box-sizing: border-box; width:504px; border-radius: 21px; border: =
+1px solid #CDCDD3"> <tbody><tr> <th class=3D"stack width100perc dmcwhite" w=
+idth=3D"252" style=3D"width:252px; color:#FFFFFF;"> <a style=3D"text-decora=
+tion:none;" href=3D"https://click.mail.zillow.com/f/a/Y1R8lDln3Yhguvv9TIh1_=
+w~~/AAAAARA~/tJbGiIE7VgSnT9GKE49jGEHMc9YkLlkkQjVzfYI2C0w51E9zkAluMxQ6AfhVQh=
+WElVlA_C4jhkGexdg9uVGDo1F420jD30_H_zSIRrdCC6A~=3Ftarget=3Dhttps%3A%2F%2Fwww=
+.zillow.com%2Fhomeloans%2F%3Futm_content%3Dresources_buy_zhl_upsell_image%=
+26utm_campaign%3Demm_zg_g_buzzlistingswelove-1_101225_a_1_national_any_edu%=
+26utm_source%3Dsd%26utm_medium%3Demail"> <!--[if !mso]><!--> <img class=3D"=
+width100perc border202000 show" width=3D"100%" aria-hidden=3D"true" style=
+=3D"overflow: hidden !important; display:none; width:100%; margin: 0; borde=
+r-radius: 0px 20px 20px 0px;" border=3D"0" src=3D"https://delivery.digitall=
+ibrary.zillowgroup.com/public/SZ_BUZZ_Upsell1_Mobile_jpg_Original.jpg" alt=
+=3D"A man looks at his phone with his dog resting on a couch nearby."> <!--=
+<![endif]--> <img class=3D"hide" width=3D"252" style=3D"border: none; outli=
+ne: none; display: block; width:252px; margin: 0 auto; height:auto; border-=
+radius: 0px 20px 20px 0px;" border=3D"0" src=3D"https://delivery.digitallib=
+rary.zillowgroup.com/public/SZ_BUZZ_Upsell1_Desktop_jpg_Original.jpg" alt=
+=3D"A man looks at his phone with his dog resting on a couch nearby."> </a>=
+ </th> <th class=3D"stack width100perc heightauto" width=3D"252" style=3D"f=
+ont-family: inherit; box-sizing: border-box; border-collapse: collapse;widt=
+h:252px;height:312px; align: center;"> <div class=3D"width100perc text-cent=
+er padt32 padb32" style=3D"margin: 0 auto; width: 252px; text-align: center=
+;"> <table cellpadding=3D"0" cellspacing=3D"0" style=3D"border: 0; width: 1=
+00%;" role=3D"Presentation"> <tbody><tr> <td style=3D"padding:0 24px;"> <h3=
+ dir=3D"ltr" class=3D"dmcwhite" style=3D"margin: 0; font-size: 20px; line-h=
+eight: 24px; font-family: 'ObjectSansHeavy', 'Arial Black', Arial, Helvetic=
+a, sans-serif; color: #FFFFFF; font-weight: 800; text-align: left;">No hidd=
+en fees =E2=80=93 <em style=3D"display:inline; font-family: 'ObjectSansHeav=
+y', 'Arial Black', Arial, Helvetica, sans-serif; color:#9FF17B; text-decora=
+tion:none;" class=3D"dmcgreen300">ever</em></h3> <p dir=3D"ltr" class=3D"dm=
+cwhite" style=3D"margin: 0; padding: 24px 0px 0; font-size: 16px; line-heig=
+ht: 24px; font-family: Helvetica, Arial, sans-serif; font-weight:400; color=
+: #FFFFFF; text-align: left;">Expect total transparency, competitive rates =
+and no surprise loan&nbsp;fees.</p> </td> </tr> <tr> <td class=3D"padlr24" =
+align=3D"left" valign=3D"top" style=3D"padding:24px 24px 0px;"> <div> <!--c=
+ta--> <a bgcolor=3D"none" href=3D"https://click.mail.zillow.com/f/a/w3lSepa=
+S4MAr6q03NgXc1w~~/AAAAARA~/qbRJIx2Mis22XjjulPtjzRpK7uhq6Gf1FwvQjA5h8009v0ke=
+6SwwfWc1eVe25-Vh15cbiTEV07Q7PDw-mmm1isgr_RFBvh4d4_KCKMbiZO0~=3Ftarget=3Dhtt=
+ps%3A%2F%2Fwww.zillow.com%2Fhomeloans%2F%3Futm_content%3Dresources_buy_zhl_=
+upsell_button%26utm_campaign%3Demm_zg_g_buzzlistingswelove-1_101225_a_1_nat=
+ional_any_edu%26utm_source%3Dsd%26utm_medium%3Demail" class=3D"secondaryHov=
+erWhite dmbuttonSecondaryWhite" style=3D"background-color: none; font-size:=
+15px;font-family: Helvetica, Arial, sans-serif; font-weight: 700; text-deco=
+ration: none; padding: 12px 16px; color: #FFFFFF; border-radius: 12px; disp=
+lay: inline-block; mso-padding-alt: 0; line-height: 24px; mso-border-alt: 2=
+px solid #FFFFFF; border: 2px solid #FFFFFF"> <!--[if mso]><i style=3D"lett=
+er-spacing:16px;mso-font-width:-100%;mso-text-raise:20pt">&nbsp;</i>&nbsp;&=
+nbsp; <![endif]--><span style=3D"mso-text-raise:10pt;font-size:16px;font-fa=
+mily: Helvetica, Arial, sans-serif; font-weight: 700 !important;" class=3D"=
+secondaryHoverWhite dmbuttonSecondaryWhite">Get pre-qualified</span> <!--[i=
+f mso]>&nbsp;&nbsp;<i style=3D"letter-spacing: 16px;mso-font-width:-100%">&=
+nbsp;</i> <![endif]--> </a> </div> </td> </tr> </tbody></table> </div> </th=
+> </tr> </tbody></table> <table class=3D"width100perc" width=3D"600" cellsp=
+acing=3D"0" cellpadding=3D"0" align=3D"center" role=3D"presentation"> <tbod=
+y><tr> <td style=3D"font-size: 0px; line-height: 0px; margin: 0;" height=3D=
+"32">&nbsp; </td> </tr> </tbody></table> </div> </td> </tr> </tbody></table=
+> <table width=3D"600" cellspacing=3D"0" cellpadding=3D"0" align=3D"center"=
+ bgcolor=3D"#FFFFFF" style=3D"background-color: #FFFFFF; width:600px;" role=
+=3D"presentation" class=3D"width100perc dmblack"> <tbody><tr> <td style=3D"=
+font-size: 0px; line-height: 0px; text-align: left; margin: 0; width:600px;=
+" height=3D"32" class=3D"width90perc">&nbsp; </td> </tr> <tr> <td class=3D"=
+width100perc dmbgray500 padlr24" style=3D"padding: 24px 48px 0px; border-to=
+p: 2px solid #CDCDD3;"> <table width=3D"100%" cellspacing=3D"0" cellpadding=
+=3D"0" align=3D"left" role=3D"presentation"> <!----> <tbody><tr> <td style=
+=3D"text-align: left;padding:0px; "> <p class=3D"dmcgray400" style=3D"font-=
+family: Helvetica, Arial, sans serif; font-size: 14px; line-height: 21px; f=
+ont-weight: 700; color: #111116;">Download the app</p> </td> </tr> <tr> <td=
+ height=3D"24" style=3D"font-size:0px; line-height:24px;"> </td> </tr> <tr>=
+ <td style=3D"text align: left; padding: 0px;"> <table role=3D"presentation=
+" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" width=3D"100%" align=3D"=
+left"> <tbody><tr> <td align=3D"left" style=3D"text-decoration: none; borde=
+r: 0;"> <!-- APP STORE --> <a target=3D"_blank" href=3D"https://click.mail.=
+zillow.com/f/a/oh8B10O83fRX9U-1rjvVDg~~/AAAAARA~/qbRJIx2Mis22XjjulPtjzXazjj=
+M9pp6UjjkjN9Bu0aWxEvQeTRXHBy5Y9NRrHEX0jlJDP15WddTp3I2_US14yjCiOv9h8uXWm_ZP3=
+9LmT24~=3Ftarget=3Dhttps%3A%2F%2Fapp.us.adjust.com%2F1f5iwgfg_1fa0mi9e%3Ffa=
+llback%3Dhttps%253A%252F%252Fwww.zillow.com%252Fbuy%252Fapp-download-email%=
+252F%26redirect_macos%3Dhttps%253A%252F%252Fwww.zillow.com%252Fbuy%252Fapp-=
+download-email%252F%26utm_campaign%3Demm_zg_g_buzzlistingswelove-1_101225_a=
+_1_national_any_edu%26utm_source%3Dsd%26utm_medium%3Demail"><img class=3D"w=
+idth129" src=3D"https://wp-tid.zillowstatic.com/bedrock/app/uploads/sites/3=
+6/2023/01/app_store_badge.png" style=3D"display: inline-block; border: 0; w=
+idth: 144px;" alt=3D"App Store" width=3D"144"></a> &nbsp;&nbsp;&nbsp; <!-- =
+GOOGLE PLAY --> <a target=3D"_blank" href=3D"https://click.mail.zillow.com/=
+f/a/lqF9qCer5JIIQ6pPEWZRTg~~/AAAAARA~/qbRJIx2Mis22XjjulPtjzcVfK6xSr1DfdZs85=
+HugTI9_fSZacEE3vjt5suXqZg4fuWG3dSfscsHYC5AEm7ezAytBIOtDWUE4jGt04FRwGws~=3Ft=
+arget=3Dhttps%3A%2F%2Fapp.us.adjust.com%2F1f5iwgfg_1fa0mi9e%3Ffallback%3Dht=
+tps%253A%252F%252Fwww.zillow.com%252Fbuy%252Fapp-download-email%252F%26redi=
+rect_macos%3Dhttps%253A%252F%252Fwww.zillow.com%252Fbuy%252Fapp-download-em=
+ail%252F%26utm_campaign%3Demm_zg_g_buzzlistingswelove-1_101225_a_1_national=
+_any_edu%26utm_source%3Dsd%26utm_medium%3Demail"><img class=3D"width144" sr=
+c=3D"https://wp-tid.zillowstatic.com/bedrock/app/uploads/sites/36/2023/01/g=
+oogle-play-badge.png" style=3D"display: inline-block; border: 0; width: 161=
+px;" alt=3D"Google Play" width=3D"161"></a> </td> </tr> </tbody></table> </=
+td> </tr> <!----> <tr> <td height=3D"24" style=3D"font-size:0px; line-heigh=
+t:24px;"> </td> </tr> </tbody></table> </td> </tr> </tbody></table> <table =
+width=3D"600" cellspacing=3D"0" cellpadding=3D"0" align=3D"center" bgcolor=
+=3D"#FFFFFF" style=3D"background-color: #FFFFFF; width:600px;" role=3D"pres=
+entation" class=3D"width100perc dmblack"> <tbody><tr> <td style=3D"padding:=
+ 0px 48px 0px; font-size: 0px; line-height: 0px; text-align: left; margin: =
+0; width:600px;" height=3D"32" class=3D"padlr24"> <table width=3D"100%" cel=
+lspacing=3D"0" cellpadding=3D"0" align=3D"left" role=3D"presentation"> <tbo=
+dy><tr> <td class=3D"width100perc"> <table align=3D"left" cellspacing=3D"0"=
+ cellpadding=3D"0" role=3D"presentation"> <tbody><tr> <td> <a href=3D"https=
+://click.mail.zillow.com/f/web/hGEH9kx_tmsZjrPuUKSr8Q~~/AAAAARA~/DAbv2n5cXu=
+3D6cDgP4pUh4mIT58OvV6OspzebIT04cF5Nbas8LEojJE73LA_5jHLCRDXwP9MGdUKV7Td22m0h=
+qOo47Fc3giiAAiNaWXNZuc~=3Ftarget=3Dhttps%3A%2F%2Fwww.instagram.com%2Fzillow=
+%2F%3Futm_content%3Dsm_in_button%26utm_campaign%3Demm_zg_g_buzzlistingswelo=
+ve-1_101225_a_1_national_any_edu%26utm_source%3Dsd%26utm_medium%3Demail"><i=
+mg width=3D"24" height=3D"24" style=3D"padding:0 24px 0 0" src=3D"https://d=
+elivery.digitalassets.zillowgroup.com/api/public/content/instagramicon_CMS_=
+Full.png=3Fv=3Dee85140a" alt=3D"Instagram"></a> </td> <!--[if mso]> <td wid=
+th=3D"24"></td> <![endif]--> <td> <a href=3D"https://click.mail.zillow.com/=
+f/web/R-h5VUqoJo4-vugBQyzSYA~~/AAAAARA~/xlZydnUNFHFOmrdMPARiSequY7l4ytHJTsW=
+BODvyCqJgYFieLG75qYWuh9i7mg8UrP18NkxBV_Xm3eJ4wennluYbcHuJ9kr5y0QPp7zSKo0~=
+=3Ftarget=3Dhttps%3A%2F%2Fwww.facebook.com%2FZillow%2F%3Futm_content%3Dsm_f=
+b_button%26utm_campaign%3Demm_zg_g_buzzlistingswelove-1_101225_a_1_national=
+_any_edu%26utm_source%3Dsd%26utm_medium%3Demail"><img width=3D"24" height=
+=3D"24" style=3D"padding:0 24px 0 0" src=3D"https://delivery.digitalassets.=
+zillowgroup.com/api/public/content/facebookicon_CMS_Full.png=3Fv=3Df4910151=
+" alt=3D"Facebook"></a> </td> </tr> <tr> <td height=3D"24" style=3D"font-si=
+ze:0px; line-height:24px;"> </td> </tr> </tbody></table> </td> </tr> </tbod=
+y></table> </td> </tr> </tbody></table> <table width=3D"600" cellspacing=3D=
+"0" cellpadding=3D"0" align=3D"center" bgcolor=3D"#FFFFFF" style=3D"backgro=
+und-color: #FFFFFF; width:600px;" role=3D"presentation" class=3D"width100pe=
+rc dmblack"> <tbody><tr> <td style=3D"font-size: 0px; line-height: 0px; tex=
+t-align: left; margin: 0; width:600px;" height=3D"32" class=3D"width90perc"=
+> <table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" align=3D"left" =
+role=3D"presentation"> <tbody><tr> <td class=3D"padlr24 width100perc" style=
+=3D"padding: 0px 48px 0px;"> <!-- General Footer --> <table width=3D"100%" =
+align=3D"left" cellspacing=3D"0" cellpadding=3D"0" role=3D"presentation"> <=
+tbody><tr> <td class=3D"dmcgray400" style=3D"font-family:Helvetica, Arial, =
+sans serif; color: #111116; font-size: 12px; line-height: 18px; text-align:=
+ left;"> <span class=3D"dmcwhite"> Zillow, Inc.<br> 1301 Second Avenue, Flo=
+or 36<br> Seattle, WA 98101<br> =C2=A9 2006=E2=80=932025 </span> </td> </tr=
+> <tr> <td height=3D"24" style=3D"font-size:0px; line-height:24px;"> </td> =
+</tr> <tr> <td style=3D"font-family:Helvetica, Arial, sans serif; font-size=
+: 12px; line-height:18px; font-weight: 400; text-align: left;"> <span> <a c=
+lass=3D"dmclink" href=3D"https://click.mail.zillow.com/f/web/MXXTT73kUswKwC=
+WtE1CHnA~~/AAAAARA~/rp_UxL7WSGTRjcl1DttPw1k4JqMULUs1bVCsj4vblRqESRzKyORMMSF=
+VpS9L9qSQgqVFDRbLzT5MOnjdq1depWDya3DLjnMYpQBkmbd04Dk~=3Ftarget=3Dhttps%3A%2=
+F%2Fwww.zillowgroup.com%2Fzg-privacy-policy%2F%3Futm_content%3Dpp_privacy_p=
+olicy_footer%26utm_campaign%3Demm_zg_g_buzzlistingswelove-1_101225_a_1_nati=
+onal_any_edu%26utm_source%3Dsd%26utm_medium%3Demail" style=3D"color: #0041D=
+9; font-size: 12px; line-height: 18px; text-decoration: underline; font-wei=
+ght: 400;">Privacy policy</a> </span> <span class=3D"dmcgray400">&nbsp;|&nb=
+sp;</span> <span> <a class=3D"dmclink" style=3D"color: #0041D9; font-size: =
+12px;line-height: 18px; text-decoration: underline;" href=3D"https://click.=
+mail.zillow.com/f/a/qyJ5inxin4LOoonwOK6vhw~~/AAAAARA~/QBl5L9xSBOStB5yl4cQu2=
+bkAPFKgU9yg1kj6bWmj8UEzO-KagqsCQLBDYhv7bl2QsIHWiUOZfAu1eOqetCnKxSn6bSh_rb1V=
+VDC_mcuKLrE~=3Ftarget=3Dhttps%3A%2F%2Fwww.zillow.com%2Femail%2FUnsubscribe.=
+htm%3Fet%3D-1%26zuid%3DX1-ZU17znt803g9vrd_9d4h1%26utm_content%3Dunsub_unsub=
+scribe_from_this_email_footer%26utm_campaign%3Demm_zg_g_buzzlistingswelove-=
+1_101225_a_1_national_any_edu%26utm_source%3Dsd%26utm_medium%3Demail">Unsub=
+scribe from this email</a> </span> <span class=3D"dmcgray400">&nbsp;|&nbsp;=
+</span> <span> <a class=3D"dmclink" href=3D"https://click.mail.zillow.com/f=
+/a/CxSiTAXkqkzwE5QNExHrvw~~/AAAAARA~/jBAKRRz9oQW1SZ7ubnv-9jLcsJw8rEjC-NVMuC=
+KqBKvc6ZMGH-YFSMvQYtMyxLlN2i3xLGYqYR2SOx6nmE79luCuqgod-3K3PgDcQnOrOyo~=3Fta=
+rget=3Dhttps%3A%2F%2Fwww.zillow.com%2Fmyzillow%2Fnotifications%2F%3Futm_con=
+tent%3Dpc_update_your_preferences_footer%26utm_campaign%3Demm_zg_g_buzzlist=
+ingswelove-1_101225_a_1_national_any_edu%26utm_source%3Dsd%26utm_medium%3De=
+mail" style=3D"color: #0041D9; font-size: 12px;line-height: 18px; text-deco=
+ration: underline;"><span style=3D"font-weight: 400;"></span>Update&nbsp;yo=
+ur&nbsp;preferences</a> </span> <span class=3D"dmcgray400">&nbsp;|&nbsp;</s=
+pan> <span> <a class=3D"dmclink" href=3D"https://click.mail.zillow.com/f/a/=
+uv3T7AEtRg5EW3SeSEccSw~~/AAAAARA~/exBOdzJZVYrgrx9sX3So7JiINoy_OTFwRcgdv8DqS=
+K7gsErJ75Zcltq417DLz7ARw6W7fbkIYXyMe7W3a1GFWUBLVY0NYiG7S4kw5S7qzM8~=3Ftarge=
+t=3Dhttps%3A%2F%2Fwww.zillow.com%2Femail%2Ffeedback%3Futm_source%3Dsd%26utm=
+_medium%3Demail%26utm_campaign%3Demm_zg_g_buzzlistingswelove-1_101225_a_1_n=
+ational_any_edu%26utm_term%3Dfeedback%26utm_content%3Dpc_share_your_feedbac=
+k_text" style=3D"color: #0041D9; font-size: 12px;line-height: 18px; text-de=
+coration: underline;"><span style=3D"font-weight: 400;"></span>Share&nbsp;y=
+our&nbsp;feedback</a> </span> </td> </tr> </tbody></table> <!-- /General Fo=
+oter --> <!-- ZHL --> <!-- /ZHL --> <!-- Rental LT --> <!-- /Rental LT --> =
+<!-- ZGMI --> <!-- /ZGMI --> <!-- ZCS --> <!-- /ZCS --> <!-- ZGM --> <!-- /=
+ZGM --> <!-- Switch to Daily --> <!-- /Switch to Daily --> <!-- Switch to I=
+nstant --> <!-- /Switch to Instant --> </td> </tr> </tbody></table> </td> <=
+/tr> </tbody></table> <table class=3D"width100perc" width=3D"600" cellspaci=
+ng=3D"0" cellpadding=3D"0" align=3D"center" style=3D"width:600px; " role=3D=
+"presentation"> <tbody><tr> <td style=3D"font-size: 0px; line-height: 0px; =
+text-align: center; margin: 0; width:600px;" height=3D"32" class=3D"width90=
+perc">&nbsp; </td> </tr> </tbody></table> </td> </tr> </tbody></table> </td=
+> </tr> </tbody></table> <!--[if mso | IE]> </td> </tr> </table> <![endif]-=
+-> </center> <img border=3D"0" width=3D"1" height=3D"1" alt=3D"" src=3D"htt=
+ps://click.mail.zillow.com/q/kb_0hUh7U6mk66XxKJ2_4Q~~/AAAAARA~/p8MOxM67irLc=
+FrAmrUmzjM7lbPK8RFrmFYIakOXlrc1kK9dovRzscHBgccieAeFGLmkNkdtTo5V4UFJOhy0UgQ~=
+~"> <!-- END: gex.html --> </td></tr> </tbody></table> </td> </tr> </tbody>=
+</table> </center> </body></html>
+
